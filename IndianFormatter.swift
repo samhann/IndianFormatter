@@ -1,11 +1,3 @@
-//
-//  IndianFormatter.swift
-//  
-//
-//  Created by Samhan Salahuddin on 26/12/15.
-//
-//
-
 import UIKit
 
 var list = ["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen","Twenty"]
@@ -32,6 +24,7 @@ func twoDigitToString(theNum : Int)->String
         return first
     }
 }
+
 
 
 func extract(var theNum : Int,var numToExtract:Int)->Int
@@ -67,8 +60,12 @@ func fullNumberToString(var number: Int) -> String
         
         number /= Int(pow(10.0, Double(num)))
         if(extracted != 0) {
-            var string = twoDigitToString(extracted) +  " " + suffixes[index]
-            print(twoDigitToString(extracted))
+            var string = twoDigitToString(extracted)
+            
+            if suffixes[index] != "" {
+                string += " " + suffixes[index]
+            }
+            
             if retStrings.count == 1 && prevExtracted == 0 {
                 string += " And "
             }
@@ -104,7 +101,7 @@ func numToCurrencyString(let rupees : Int , let paise : Int , let suffix:String 
         if rupees != 0 {
             components.append("And")
         }
-        components.append(numToString(paise) + (paise == 1 ? "Paisa" : "Paise"))
+        components.append(numToString(paise) + (paise == 1 ? " Paisa" : " Paise"))
         
     }
     components.append(suffix)
